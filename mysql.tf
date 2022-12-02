@@ -1,19 +1,19 @@
-resource "docker_image" "mysql" {
+resource "docker_image" "mysql_latest" {
   name = "mysql:8"
 }
 
 resource "docker_container" "mysql" {
   name = "mysql"
-  image = "${docker_image.mysql.latest}"
+  image = "${docker_image.mysql_latest.image_id}"
   env = [
     "MYSQL_ROOT_PASSWORD=abcD_1234"
   ]
   ports {
-    internal = 3306
-    external = 3306
+    internal = 3308
+    external = 3308
   }
   depends_on = [
-    docker_image.mysql
+    docker_image.mysql_latest
   ]
 }
 
